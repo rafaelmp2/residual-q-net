@@ -1,6 +1,6 @@
 import gym
 import ma_gym
-from common.arguments import common_args, vdn_qmix_args, coma_args, commnet_args
+from common.arguments import common_args, value_mix_args, coma_args, commnet_args
 from runner import Runner
 
 
@@ -31,30 +31,28 @@ if __name__ == '__main__':
 	args.n_agents = env.n_agents
 
 	if args.env == 'Combat-v0':
-		args.state_shape = 150 * 5
-		args.obs_shape = 150 
+		args.state_shape = env.observation_space[0].shape[0] * env.n_agents
+		args.obs_shape = env.observation_space[0].shape[0] 
 	elif args.env == 'PredatorPrey7x7-v0':
-		args.state_shape = 28 * args.n_agents 
-		args.obs_shape = 28
+		args.state_shape = env.observation_space[0].shape[0] * args.n_agents 
+		args.obs_shape = env.observation_space[0].shape[0]
 	elif args.env == 'Switch2-v0':
-		args.state_shape = 4
-		args.obs_shape = 2 
+		args.state_shape = env.observation_space[0].shape[0] * args.n_agents
+		args.obs_shape = env.observation_space[0].shape[0] 
 	elif args.env == 'PredatorPrey5x5-v0':
-		args.state_shape = 56
-		args.obs_shape = 28
+		args.state_shape = env.observation_space[0].shape[0] * args.n_agents
+		args.obs_shape = env.observation_space[0].shape[0]
 	elif args.env == 'Checkers-v0':
-		args.state_shape = 22
-		args.obs_shape = 11
+		args.state_shape = env.observation_space[0].shape[0] * args.n_agents
+		args.obs_shape = env.observation_space[0].shape[0]
 		
 	args.episode_limit = env._max_steps
 
 	# load args
 	if args.alg == 'vdn' or args.alg == 'qmix' or args.alg == 'qtran_base' or args.alg == 'rqn':
-		args = vdn_qmix_args(args)
+		args = value_mix_args(args)
 	elif args.alg.find('coma') > -1:
 		args = coma_args(args)
-	elif args.alg.find('vdn') > -1 or args.alg.find('qmix') > -1: 
-		args = vdn_qmix_args(args)
 	else:
 		raise Exception('No such algorithm!')
 
@@ -62,7 +60,6 @@ if __name__ == '__main__':
 		args = commnet_args(args)
 
 	print("CUDA set to", args.cuda)
-
 
 	runner = Runner(env, args)
 

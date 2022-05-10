@@ -1,7 +1,7 @@
 import torch
 import os
 from network.base_net import RNN
-from network.rqn_net import SumNet, EstimationNet
+from network.rqn_net import SumNet, RQNet
 
 
 class RQN:
@@ -24,7 +24,7 @@ class RQN:
 		
 		self.eval_sum_net = SumNet()  # netowrk that adds up agents Q values 
 		self.target_sum_net = SumNet()  # target network, as in DQN
-		self.eval_est_net = EstimationNet(args)  # netowrk that adds up agents Q values 
+		self.eval_est_net = RQNet(args)  # netowrk that adds up agents Q values 
 
 		self.args = args
 

@@ -49,7 +49,7 @@ def coma_args(args):
 	return args
 
 
-def vdn_qmix_args(args):
+def value_mix_args(args):
 	# buffer/batch sizes
 	args.batch_size = 32
 	args.buffer_size = int(5e3)
@@ -87,7 +87,6 @@ def vdn_qmix_args(args):
 
 # commnet args
 def commnet_args(args):
-	#TODO: might change this
 	
 	args.k = 3
 

@@ -186,7 +186,6 @@ class QtranBase:
 			inputs_next.append(torch.eye(self.args.n_agents).unsqueeze(0).expand(episode_num, -1, -1))
 
 			'''
-			TODO: read and refrase
 			It is necessary to put three of the obs together, and the data of episode_num episodes 
 			and self.args.n_agents agents are combined into 40 (40,96) data.
 
@@ -197,7 +196,6 @@ class QtranBase:
 		inputs = torch.cat([x.reshape(episode_num * self.args.n_agents, -1) for x in inputs], dim=1)
 		inputs_next = torch.cat([x.reshape(episode_num * self.args.n_agents, -1) for x in inputs_next], dim=1)
 
-		# TODO note from github: Check if inputs_next is equivalent to moving inputs backward
 		return inputs, inputs_next
 
 

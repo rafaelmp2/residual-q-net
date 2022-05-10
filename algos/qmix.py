@@ -145,7 +145,6 @@ class QMix:
 
 
 	def _get_inputs(self, batch, transition_idx):
-		# gets the experience of the transition_idx on all episodes, actions_onehot take all out because the last one is used TODO ?
 		obs, obs_next, actions_onehot = batch['obs'][:, transition_idx], \
 		                          batch['obs_next'][:, transition_idx], batch['actions_onehot'][:]
 		episode_num = obs.shape[0]
@@ -162,7 +161,7 @@ class QMix:
 		        inputs.append(actions_onehot[:, transition_idx - 1])
 		    inputs_next.append(actions_onehot[:, transition_idx])
 
-		if self.args.reuse_network:  # uses one network for all agents TODO: see differences
+		if self.args.reuse_network:  
 			
 			'''
 			Because the current obs 3D data, each dimension 

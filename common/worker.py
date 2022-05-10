@@ -122,7 +122,6 @@ class RolloutWorker:
 		               terminated=terminate.copy()
 		               )
 		
-		# add extra episode dimension to the dict values, TODO not yet very sure why
 		for key in episode.keys():
 		    episode[key] = np.array([episode[key]])
 		if not evaluate:
@@ -256,7 +255,6 @@ class CommRolloutWorker:
 		               terminated=terminate.copy()
 		               )
 		
-		# add extra episode dimension to the dict values, TODO not yet very sure why
 		for key in episode.keys():
 		    episode[key] = np.array([episode[key]])
 		if not evaluate:

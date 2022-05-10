@@ -16,7 +16,7 @@ class ReplayBuffer:
         self.current_size = 0
 
 
-        # create buffer to store info: arrays with shape [a,b,c]  TODO: change some parts of the buffer to work with > than 1D shapes as tuples (in shape) will trigger errors
+        # create buffer to store info: arrays with shape [a,b,c] 
         # buffer is a dic where the values for each key are arrays that store several episode_batches info linked to each other for each key
         self.buffers = {'obs': np.empty([self.size, self.episode_limit, self.n_agents, self.obs_shape]),
                         'actions': np.empty([self.size, self.episode_limit, self.n_agents, 1]),
